@@ -1,0 +1,4480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Big IP Machine - Professional platform for fractional ownership of intellectual property on the blockchain">
+    <title>The Big IP Machine - Professional IP Tokenization Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Purple Color Scheme */
+            --primary: #8b5cf6;
+            --primary-hover: #7c3aed;
+            --primary-light: #a78bfa;
+            --primary-dark: #6d28d9;
+            --secondary: #c084fc;
+            --accent: #ddd6fe;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --white: #ffffff;
+            
+            /* Purple-tinted Grays - Fixed for text readability */
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            /* Purple Background Gradients */
+            --bg-primary: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
+            --bg-card: rgba(255, 255, 255, 0.95);
+            --bg-card-dark: rgba(30, 27, 75, 0.95);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+              body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #2d1b69 100%);
+            color: var(--white);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background elements */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+            font-size: 2rem;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 20%;
+            right: 15%;
+            animation-delay: 2s;
+            font-size: 1.5rem;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 4s;
+            font-size: 2.5rem;
+        }
+
+        .floating-element:nth-child(4) {
+            bottom: 20%;
+            right: 10%;
+            animation-delay: 1s;
+            font-size: 1.8rem;
+        }
+
+        .floating-element:nth-child(5) {
+            top: 50%;
+            left: 5%;
+            animation-delay: 3s;
+            font-size: 1.2rem;
+        }
+
+        .floating-element:nth-child(6) {
+            top: 60%;
+            right: 5%;
+            animation-delay: 5s;
+            font-size: 2rem;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-8);
+            backdrop-filter: blur(20px);
+        }
+
+        *:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--primary);
+            color: var(--white);
+            padding: 8px;
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            z-index: 1000;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-6);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: var(--space-16);
+            position: relative;
+        }
+
+        .version-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--primary);
+            color: var(--white);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-lg);
+            font-size: 0.875rem;
+            font-weight: 600;
+            box-shadow: var(--shadow-md);
+        }
+
+        .header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: var(--space-4);
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-200);
+            margin-bottom: var(--space-8);
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .upload-area {
+            background: var(--bg-card);
+            border: 2px dashed rgba(139, 92, 246, 0.3);
+            border-radius: var(--radius-xl);
+            padding: var(--space-12);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: var(--space-8);
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-6);
+            margin-bottom: var(--space-12);
+        }
+
+        .stat-card {
+            background: var(--bg-card-dark);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .stat-card h3 {
+            font-size: 0.875rem;
+            color: var(--gray-300);
+            margin-bottom: var(--space-3);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        .stat-card .value {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-2);
+            display: block;
+        }
+
+        .stat-card .description {
+            font-size: 0.875rem;
+            color: var(--gray-400);
+            font-weight: 400;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: var(--space-10);
+            background: var(--bg-card-dark);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-lg);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: var(--space-4) var(--space-6);
+            background: transparent;
+            border: none;
+            color: var(--gray-300);
+            font-weight: 500;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 1rem;
+        }
+
+        .nav-tab:hover {
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-tab.active {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-tab .badge {
+            background: var(--warning);
+            color: var(--white);
+            font-size: 0.75rem;
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-sm);
+            margin-left: var(--space-2);
+            font-weight: 600;
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: var(--space-8);
+            margin-bottom: var(--space-12);
+        }
+
+        .section-card {
+            background: var(--bg-card-dark);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+        }
+
+        .section-card:hover {
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .section-card h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--space-6);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .section-card .icon {
+            font-size: 1.875rem;
+        }
+
+        .form-group {
+            margin-bottom: var(--space-6);
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: var(--space-2);
+            color: var(--gray-200);
+            font-size: 0.875rem;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: var(--space-4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-lg);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--white);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-input:focus, .form-select:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: var(--gray-400);
+        }
+
+        .form-select option {
+            background: var(--gray-800);
+            color: var(--white);
+            padding: var(--space-2);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: var(--space-4) var(--space-8);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            min-height: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-link {
+            background: none;
+            color: var(--primary);
+            border: none;
+            padding: var(--space-2) 0;
+            font-size: 0.9rem;
+            text-decoration: underline;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .btn-link:hover {
+            color: var(--primary-hover);
+        }
+
+        .form-help {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            margin-top: var(--space-1);
+            line-height: 1.4;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+            cursor: pointer;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: var(--space-3);
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .checkmark {
+            position: relative;
+            height: 20px;
+            width: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-label:hover .checkmark {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .checkbox-label input:checked ~ .checkmark {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 6px;
+            top: 2px;
+            width: 6px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .checkbox-label input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            backdrop-filter: blur(10px);
+        }
+
+        .splash-content {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: var(--space-12);
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .splash-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-4);
+        }
+
+        .splash-message {
+            font-size: 1.2rem;
+            margin-bottom: var(--space-6);
+            line-height: 1.6;
+        }
+
+        .token-breakdown {
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin: var(--space-6) 0;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .token-stat {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-2) 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .token-stat:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .next-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: var(--space-4);
+            margin: var(--space-6) 0;
+        }
+
+        .next-step {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .next-step-icon {
+            font-size: 1.5rem;
+            margin-bottom: var(--space-2);
+        }
+
+        .next-step-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: var(--space-1);
+        }
+
+        .next-step-desc {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            line-height: 1.3;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .btn-success:hover:not(:disabled) {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        .upload-area {
+            border: 2px dashed rgba(139, 92, 246, 0.4);
+            border-radius: var(--radius-xl);
+            padding: var(--space-12);
+            text-align: center;
+            background: rgba(139, 92, 246, 0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-bottom: var(--space-8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary);
+            background: rgba(139, 92, 246, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .upload-area.dragover {
+            border-color: var(--primary);
+            background: rgba(139, 92, 246, 0.15);
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: var(--space-4);
+            display: block;
+        }
+
+        .upload-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+            color: var(--white);
+        }
+
+        .upload-subtext {
+            color: var(--white);
+            font-size: 1rem;
+            margin-bottom: var(--space-4);
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        .file-types {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--space-2);
+            margin-top: var(--space-4);
+        }
+
+        .file-type {
+            background: rgba(255, 255, 255, 0.1);
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            color: var(--gray-300);
+            font-weight: 500;
+        }
+
+        .results-section {
+            background: var(--bg-card-dark);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            margin-top: var(--space-8);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .result-item {
+            text-align: center;
+        }
+
+        .result-label {
+            font-size: 0.875rem;
+            color: var(--gray-300);
+            margin-bottom: var(--space-2);
+            font-weight: 500;
+        }
+
+        .result-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        .content-list {
+            display: grid;
+            gap: var(--space-4);
+        }
+
+        .content-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .content-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .content-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-3);
+        }
+
+        .content-title {
+            font-weight: 600;
+            color: var(--white);
+            font-size: 1.125rem;
+        }
+
+        .content-category {
+            background: var(--primary);
+            color: var(--white);
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .content-meta {
+            display: flex;
+            gap: var(--space-4);
+            color: var(--gray-400);
+            font-size: 0.875rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: var(--space-16);
+            color: var(--gray-400);
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: var(--space-4);
+            opacity: 0.5;
+        }
+
+        .empty-state-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+            color: var(--gray-300);
+        }
+
+        .empty-state-description {
+            font-size: 1rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: var(--space-16);
+            padding-top: var(--space-8);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray-400);
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-4);
+        }
+
+        .footer-text {
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--space-4);
+            }
+            
+            .header h1 {
+                font-size: 1.875rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+                gap: var(--space-2);
+            }
+            
+            .upload-area {
+                padding: var(--space-8);
+            }
+            
+            .version-badge {
+                position: static;
+                display: inline-block;
+                margin-bottom: var(--space-4);
+            }
+        }
+
+        @media (prefers-contrast: high) {
+            :root {
+                --bg-card: rgba(255, 255, 255, 1);
+                --bg-card-dark: rgba(0, 0, 0, 0.9);
+            }
+            
+            .stat-card,
+            .section-card {
+                border-width: 2px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .nav-tabs,
+            .version-badge {
+                display: none;
+            }
+        }
+        
+        /* Create IP Workflow Styles */
+        .workflow-step {
+            display: none;
+        }
+        
+        .workflow-step.active {
+            display: block;
+        }
+        
+        .user-type-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-4);
+            margin: var(--space-6) 0;
+        }
+        
+        .user-type-card {
+            background: var(--bg-card);
+            border: 2px solid rgba(139, 92, 246, 0.2);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .user-type-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .user-type-card.selected {
+            border-color: var(--primary);
+            background: rgba(139, 92, 246, 0.1);
+        }
+        
+        .user-type-icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: var(--space-3);
+        }
+        
+        .user-type-card h4 {
+            color: var(--primary);
+            margin-bottom: var(--space-2);
+            font-size: 1.25rem;
+        }
+        
+        .user-type-card p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .workflow-buttons {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: space-between;
+            margin-top: var(--space-8);
+        }
+        
+        .confirmation-details {
+            background: rgba(139, 92, 246, 0.05);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin: var(--space-6) 0;
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--space-3) 0;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+        }
+        
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+        
+        .success-message {
+            text-align: center;
+            padding: var(--space-8);
+        }
+        
+        .success-icon {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: var(--space-4);
+        }
+        
+        .success-message h3 {
+            color: var(--primary);
+            margin-bottom: var(--space-4);
+            font-size: 1.5rem;
+        }
+        
+        .token-details {
+            background: rgba(139, 92, 246, 0.05);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin: var(--space-6) 0;
+            text-align: left;
+        }
+        
+        .token-item {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--space-3) 0;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+        }
+        
+        .token-item:last-child {
+            border-bottom: none;
+        }
+        
+        @media (max-width: 768px) {
+            .workflow-buttons {
+                flex-direction: column;
+            }
+            
+            .user-type-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Enhanced Upload Workflow Styles */
+        .upload-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-6);
+            margin-bottom: var(--space-6);
+        }
+
+        .upload-section {
+            background: var(--bg-card);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+        }
+
+        .upload-section h4 {
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .section-description {
+            color: var(--gray-300);
+            font-size: 0.875rem;
+            margin-bottom: var(--space-4);
+        }
+
+        .character-count {
+            text-align: right;
+            font-size: 0.75rem;
+            color: var(--gray-400);
+            margin-top: var(--space-2);
+        }
+
+        .uploaded-files-list {
+            margin-top: var(--space-4);
+        }
+
+        .uploaded-files-list h5 {
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: var(--space-3);
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-3);
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-2);
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .file-icon {
+            font-size: 1.25rem;
+            color: var(--accent);
+        }
+
+        .file-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .file-name {
+            color: var(--text-primary);
+            font-size: 0.875rem;
+            font-weight: 500;
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .file-size {
+            color: var(--gray-400);
+            font-size: 0.75rem;
+        }
+
+        .file-remove {
+            background: none;
+            border: none;
+            color: var(--gray-400);
+            cursor: pointer;
+            padding: var(--space-1);
+            border-radius: var(--radius-sm);
+            transition: color 0.2s ease;
+        }
+
+        .file-remove:hover {
+            color: #ef4444;
+        }
+
+        .supported-formats {
+            text-align: center;
+            margin-top: var(--space-6);
+            padding-top: var(--space-4);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .supported-formats p {
+            color: var(--gray-400);
+            font-size: 0.875rem;
+            margin-bottom: var(--space-2);
+        }
+
+        .format-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--space-2);
+        }
+
+        .format-tags span {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--gray-300);
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+        }
+
+        .upload-area.drag-active {
+            border-color: var(--primary);
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        /* Fix form textarea and upload section styling */
+        .form-textarea {
+            width: 100%;
+            padding: var(--space-4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-lg);
+            background: rgba(30, 27, 75, 0.8);
+            color: var(--white);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-textarea:focus {
+            border-color: var(--primary);
+            background: rgba(30, 27, 75, 0.9);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+            outline: none;
+        }
+
+        .form-textarea::placeholder {
+            color: var(--gray-400);
+        }
+
+        /* Fix upload section backgrounds */
+        .upload-section {
+            background: rgba(30, 27, 75, 0.8);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            backdrop-filter: blur(10px);
+        }
+
+        .upload-section h4 {
+            color: var(--white);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .section-description {
+            color: var(--gray-200);
+            font-size: 0.875rem;
+            margin-bottom: var(--space-4);
+        }
+
+        @media (max-width: 768px) {
+            .upload-content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Analysis Workflow Styles */
+        .analysis-results {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin-bottom: var(--space-6);
+        }
+
+        .analysis-header {
+            display: flex;
+            justify-content: center;
+            margin-bottom: var(--space-6);
+        }
+
+        .confidence-score {
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: var(--radius-xl);
+            padding: var(--space-4) var(--space-6);
+            color: white;
+        }
+
+        .confidence-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .confidence-label {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        .analysis-details {
+            display: grid;
+            gap: var(--space-4);
+        }
+
+        .analysis-item {
+            padding: var(--space-3);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-md);
+        }
+
+        .creative-elements-list {
+            list-style: none;
+            padding: 0;
+            margin: var(--space-2) 0 0 0;
+        }
+
+        .creative-elements-list li {
+            padding: var(--space-1) 0;
+            color: var(--gray-300);
+        }
+
+        .creative-elements-list li:before {
+            content: "✨ ";
+            margin-right: var(--space-2);
+        }
+
+        .value-highlight {
+            color: var(--success);
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .analysis-confirmation {
+            text-align: center;
+            margin-top: var(--space-6);
+            padding-top: var(--space-6);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .confirmation-buttons {
+            display: flex;
+            gap: var(--space-3);
+            justify-content: center;
+            margin-top: var(--space-4);
+        }
+
+        .analysis-loading {
+            text-align: center;
+            padding: var(--space-12);
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto var(--space-4);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Originality Analysis Styles */
+        .originality-progress {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin-bottom: var(--space-6);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-4);
+        }
+
+        .progress-percentage {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-light);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: var(--space-6);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            transition: width 0.3s ease;
+        }
+
+        .analysis-steps {
+            display: grid;
+            gap: var(--space-4);
+        }
+
+        .step-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3);
+            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.03);
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+
+        .step-item.active {
+            opacity: 1;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .step-item.completed {
+            opacity: 1;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .step-icon {
+            font-size: 1.5rem;
+        }
+
+        .step-content strong {
+            display: block;
+            color: var(--white);
+        }
+
+        .step-content span {
+            color: var(--gray-300);
+            font-size: 0.875rem;
+        }
+
+        .originality-results {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: var(--space-6);
+        }
+
+        .originality-scores {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+        }
+
+        .score-item {
+            text-align: center;
+            padding: var(--space-4);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-md);
+        }
+
+        .score-number {
+            display: block;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary-light);
+            margin-bottom: var(--space-1);
+        }
+
+        .score-label {
+            font-size: 0.875rem;
+            color: var(--gray-300);
+        }
+
+        .risk-badge {
+            display: inline-block;
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+            font-weight: 600;
+            background: var(--success);
+            color: white;
+        }
+
+        .fair-use-definition {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            margin-bottom: var(--space-6);
+        }
+
+        .fair-use-definition h5 {
+            color: var(--primary-light);
+            margin-bottom: var(--space-2);
+        }
+
+        .similar-content {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            margin-bottom: var(--space-6);
+        }
+
+        .similar-content h5 {
+            color: var(--primary-light);
+            margin-bottom: var(--space-2);
+        }
+
+        .similar-items {
+            display: grid;
+            gap: var(--space-3);
+            margin-top: var(--space-3);
+        }
+
+        .similar-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-3);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-sm);
+        }
+
+        .similarity-badge {
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            background: var(--gray-600);
+            color: white;
+        }
+
+        .similarity-percentage {
+            font-size: 0.875rem;
+            color: var(--gray-300);
+        }
+
+        /* Review & Improve Styles */
+        .review-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-6);
+            margin-bottom: var(--space-6);
+        }
+
+        .content-editor, .improvement-suggestions {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+        }
+
+        .editor-container {
+            position: relative;
+        }
+
+        .content-textarea {
+            width: 100%;
+            min-height: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            resize: vertical;
+        }
+
+        .content-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        .suggestions-container {
+            display: grid;
+            gap: var(--space-4);
+            margin-bottom: var(--space-4);
+        }
+
+        .suggestion-item {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+        }
+
+        .suggestion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-2);
+        }
+
+        .priority-badge {
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .priority-badge.medium {
+            background: var(--warning);
+            color: white;
+        }
+
+        .priority-badge.low {
+            background: var(--gray-600);
+            color: white;
+        }
+
+        .suggestion-tip {
+            margin-top: var(--space-2);
+            padding: var(--space-2);
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+            color: var(--primary-light);
+        }
+
+        .quick-actions {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: var(--space-4);
+        }
+
+        .quick-actions h5 {
+            margin-bottom: var(--space-3);
+            color: var(--primary-light);
+        }
+
+        .improvement-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+            padding: var(--space-4);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+        }
+
+        .metric-item {
+            text-align: center;
+        }
+
+        .metric-number {
+            display: block;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary-light);
+            margin-bottom: var(--space-1);
+        }
+
+        .metric-number.potential {
+            color: var(--success);
+        }
+
+        .metric-label {
+            font-size: 0.875rem;
+            color: var(--gray-300);
+        }
+
+        /* Protection Plan Styles */
+        .protection-plans {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin-bottom: var(--space-8);
+        }
+
+        .plan-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .plan-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .plan-card.popular {
+            border-color: var(--primary);
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .plan-header {
+            text-align: center;
+            margin-bottom: var(--space-4);
+        }
+
+        .plan-icon {
+            font-size: 2rem;
+            margin-bottom: var(--space-2);
+        }
+
+        .plan-price {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary-light);
+            margin: var(--space-2) 0;
+        }
+
+        .plan-price span {
+            font-size: 0.875rem;
+            color: var(--gray-300);
+            font-weight: 400;
+        }
+
+        .plan-description {
+            text-align: center;
+            color: var(--gray-300);
+            margin-bottom: var(--space-4);
+        }
+
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 var(--space-6) 0;
+        }
+
+        .plan-features li {
+            padding: var(--space-2) 0;
+            color: var(--gray-300);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .plan-features li:before {
+            content: "✓ ";
+            color: var(--success);
+            font-weight: 600;
+            margin-right: var(--space-2);
+        }
+
+        .additional-services {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin-bottom: var(--space-6);
+        }
+
+        .additional-services h4 {
+            color: var(--primary-light);
+            margin-bottom: var(--space-2);
+        }
+
+        .service-items {
+            display: grid;
+            gap: var(--space-3);
+            margin-top: var(--space-4);
+        }
+
+        .service-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-3);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-md);
+        }
+
+        .service-info strong {
+            display: block;
+            color: var(--white);
+        }
+
+        .service-info span {
+            color: var(--gray-300);
+            font-size: 0.875rem;
+        }
+
+        .service-price {
+            font-weight: 600;
+            color: var(--primary-light);
+            margin-right: var(--space-3);
+        }
+
+        .order-summary {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin-bottom: var(--space-6);
+        }
+
+        .order-summary h4 {
+            color: var(--primary-light);
+            margin-bottom: var(--space-4);
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--space-2);
+        }
+
+        .summary-description {
+            color: var(--gray-300);
+            font-size: 0.875rem;
+            margin-bottom: var(--space-4);
+        }
+
+        .summary-totals {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: var(--space-4);
+            margin-top: var(--space-4);
+        }
+
+        .total-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--space-2);
+        }
+
+        .total-item.final {
+            font-size: 1.1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: var(--space-2);
+            margin-top: var(--space-2);
+        }
+
+        .payment-methods {
+            margin: var(--space-4) 0;
+        }
+
+        .payment-options {
+            display: flex;
+            gap: var(--space-2);
+            margin-top: var(--space-2);
+        }
+
+        .payment-btn {
+            flex: 1;
+            padding: var(--space-2);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            color: var(--white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-large {
+            width: 100%;
+            padding: var(--space-4);
+            font-size: 1.1em;
+            margin: var(--space-4) 0;
+        }
+
+        .security-note {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.875rem;
+            color: var(--gray-300);
+            margin-top: var(--space-2);
+        }
+
+        @media (max-width: 768px) {
+            .review-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .protection-plans {
+                grid-template-columns: 1fr;
+            }
+            
+            .originality-scores {
+                grid-template-columns: 1fr;
+            }
+            
+            .improvement-metrics {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="floating-element">🎬</div>
+        <div class="floating-element">🎵</div>
+        <div class="floating-element">📚</div>
+        <div class="floating-element">🎮</div>
+        <div class="floating-element">🎨</div>
+        <div class="floating-element">💡</div>
+    </div>
+    
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <div class="container">
+        <div class="version-badge" aria-label="Current version">✨ Version 2.0</div>
+        
+        <header class="header">
+            <h1>The Big IP Machine</h1>
+            <p class="subtitle">Professional Platform for Fractional Ownership of Intellectual Property on the Blockchain</p>
+        </header>
+
+        <nav class="nav-tabs" role="tablist" aria-label="Main navigation">
+            <button class="nav-tab active" role="tab" aria-selected="true" aria-controls="dashboard-panel" id="dashboard-tab" onclick="showSection('dashboard')">
+                <span aria-hidden="true">📊</span>
+                Dashboard
+                <span class="badge">1</span>
+            </button>
+            <button class="nav-tab" role="tab" aria-selected="false" aria-controls="create-ip-panel" id="create-ip-tab" onclick="openCreateIP()">
+                <span aria-hidden="true">✨</span>
+                Create IP
+                <span class="badge">2</span>
+            </button>
+            <button class="nav-tab" role="tab" aria-selected="false" aria-controls="uploads-panel" id="uploads-tab" onclick="showSection('uploads')">
+                <span aria-hidden="true">📁</span>
+                My Uploads
+                <span class="badge">3</span>
+            </button>
+            <button class="nav-tab" role="tab" aria-selected="false" aria-controls="marketplace-panel" id="marketplace-tab" onclick="showSection('marketplace')">
+                <span aria-hidden="true">🏪</span>
+                Marketplace
+                <span class="badge">4</span>
+            </button>
+        </nav>
+
+        <main id="main-content">
+            <section id="dashboard-panel" class="content-section active" role="tabpanel" aria-labelledby="dashboard-tab">
+                <div class="section-card">
+                    <h2>
+                        <span class="icon" aria-hidden="true">📊</span>
+                        Blockchain Dashboard
+                    </h2>
+                    
+                    <div class="stats-grid" style="margin-top: var(--space-6);">
+                        <div class="stat-card">
+                            <h3>Blockchain Status</h3>
+                            <span class="value" id="dashboard-blockchain-status">0</span>
+                            <p class="description">Active Transactions</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Total Value</h3>
+                            <span class="value" id="dashboard-total-value">$0</span>
+                            <p class="description">Platform Assets</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Active Tokens</h3>
+                            <span class="value" id="dashboard-active-tokens">4</span>
+                            <p class="description">IP Categories</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Network</h3>
+                            <span class="value" id="dashboard-network">Polygon</span>
+                            <p class="description">Blockchain Network</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="create-ip-panel" class="content-section" role="tabpanel" aria-labelledby="create-ip-tab">
+                <div class="section-card">
+                    <h2>
+                        <span class="icon" aria-hidden="true">✨</span>
+                        Create Intellectual Property
+                    </h2>
+                    
+                    <div id="create-ip-workflow">
+                        <!-- User Type Selection -->
+                        <div id="user-type-step" class="workflow-step active">
+                            <h3>What type of creator are you?</h3>
+                            <div class="user-type-grid">
+                                <div class="user-type-card" onclick="selectUserType('creator')">
+                                    <span class="user-type-icon">👤</span>
+                                    <h4>Creator</h4>
+                                    <p>I create media content but not for money</p>
+                                </div>
+                                <div class="user-type-card" onclick="selectUserType('dreamer')">
+                                    <span class="user-type-icon">💡</span>
+                                    <h4>Dreamer</h4>
+                                    <p>I have ideas but haven't created content yet</p>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-primary" onclick="nextStep('content-upload')" style="margin-top: var(--space-6);" id="user-type-continue-btn" disabled>
+                                Continue <span aria-hidden="true">→</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Content Upload Step -->
+                        <div id="content-upload-step" class="workflow-step">
+                            <h3>Share your content</h3>
+                            <p style="color: var(--gray-300); margin-bottom: var(--space-6);">Upload your creative work or describe your idea</p>
+                            
+                            <div class="upload-content-grid">
+                                <!-- Text Input Section -->
+                                <div class="upload-section">
+                                    <h4>📝 Type Here</h4>
+                                    <p class="section-description">Describe your idea, story, or creative concept</p>
+                                    <textarea id="create-ip-description" class="form-textarea" placeholder="Tell us about your creative work or idea. Be as detailed as you'd like - this helps us better analyze and protect your intellectual property..." rows="8" oninput="updateCharacterCount(); updateUploadContinueButton();"></textarea>
+                                    <div class="character-count" id="char-count">0 characters</div>
+                                </div>
+                                
+                                <!-- File Upload Section -->
+                                <div class="upload-section">
+                                    <h4>📁 Upload Files</h4>
+                                    <p class="section-description">Upload any media files related to your content</p>
+                                    
+                                    <div class="upload-area" id="upload-drop-zone" onclick="document.getElementById('create-ip-file-input').click()">
+                                        <span class="upload-icon" aria-hidden="true">📁</span>
+                                        <div class="upload-text">Drag and drop files here, or click to browse</div>
+                                        <div class="upload-subtext">Supports all media types: images, videos, audio, documents</div>
+                                    </div>
+                                    <input type="file" id="create-ip-file-input" style="display: none;" onchange="handleCreateIPFileSelect(event)" multiple accept="*/*">
+                                    
+                                    <!-- Uploaded Files List -->
+                                    <div id="uploaded-files-list" class="uploaded-files-list" style="display: none;">
+                                        <h5>Uploaded Files:</h5>
+                                        <div id="files-container"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Content Category -->
+                            <div class="form-group" style="margin-top: var(--space-6);">
+                                <label for="content-category-select" class="form-label">Content Category</label>
+                                <select id="content-category-select" class="form-select" onchange="updateUploadContinueButton()">
+                                    <option value="">Select your content type</option>
+                                    <option value="film">Film & Video</option>
+                                    <option value="music">Music & Audio</option>
+                                    <option value="writing">Writing & Literature</option>
+                                    <option value="art">Visual Art & Design</option>
+                                    <option value="photography">Photography</option>
+                                    <option value="animation">Animation</option>
+                                    <option value="gaming">Gaming</option>
+                                    <option value="software">Software & Apps</option>
+                                    <option value="fashion">Fashion & Style</option>
+                                    <option value="architecture">Architecture</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Content Title -->
+                            <div class="form-group">
+                                <label for="create-ip-title" class="form-label">Content Title</label>
+                                <input type="text" id="create-ip-title" class="form-input" placeholder="Enter a descriptive title" oninput="updateUploadContinueButton()">
+                            </div>
+                            
+                            <div class="workflow-buttons">
+                                <button class="btn btn-secondary" onclick="previousStep('user-type')">← Back</button>
+                                <button class="btn btn-primary" onclick="nextStep('content-analysis')" id="upload-continue" disabled>Continue to Analysis →</button>
+                            </div>
+                            
+                            <!-- Supported Formats -->
+                            <div class="supported-formats">
+                                <p>Supported formats:</p>
+                                <div class="format-tags">
+                                    <span>Images: JPG, PNG, GIF, SVG</span>
+                                    <span>Video: MP4, AVI, MOV, WebM</span>
+                                    <span>Audio: MP3, WAV, FLAC, OGG</span>
+                                    <span>Documents: PDF, DOC, TXT</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Content Analysis Step -->
+                        <div id="content-analysis-step" class="workflow-step">
+                            <h3>Content Analysis</h3>
+                            <p style="color: var(--gray-300); margin-bottom: var(--space-6);">AI-powered analysis of your content's characteristics and value</p>
+                            
+                            <div class="analysis-results" id="content-analysis-results" style="display: none;">
+                                <div class="analysis-header">
+                                    <div class="confidence-score">
+                                        <span class="confidence-number" id="analysis-confidence">94%</span>
+                                        <span class="confidence-label">Confidence</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="analysis-details">
+                                    <div class="analysis-item">
+                                        <strong>Content Type:</strong> <span id="analysis-content-type">Creative Writing</span>
+                                    </div>
+                                    <div class="analysis-item">
+                                        <strong>Category:</strong> <span id="analysis-category">Science Fiction Short Story</span>
+                                    </div>
+                                    <div class="analysis-item">
+                                        <strong>Identified Creative Elements:</strong>
+                                        <ul id="analysis-elements" class="creative-elements-list">
+                                            <li>Original narrative structure</li>
+                                            <li>Unique character development</li>
+                                            <li>Innovative world-building concepts</li>
+                                            <li>Creative dialogue patterns</li>
+                                        </ul>
+                                    </div>
+                                    <div class="analysis-item">
+                                        <strong>Estimated IP Value:</strong> <span id="analysis-value" class="value-highlight">$2,400</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="analysis-confirmation">
+                                    <p>This looks like: <strong id="analysis-summary">Science Fiction Short Story</strong> - Are we correct?</p>
+                                    <div class="confirmation-buttons">
+                                        <button class="btn btn-success" onclick="confirmAnalysis(true)">Yes, that's correct</button>
+                                        <button class="btn btn-secondary" onclick="confirmAnalysis(false)">No, that's not right</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="analysis-loading" id="content-analysis-loading">
+                                <div class="loading-spinner"></div>
+                                <p>Analyzing your content...</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Originality Analysis Step -->
+                        <div id="originality-analysis-step" class="workflow-step">
+                            <h3>Originality Analysis</h3>
+                            <p style="color: var(--gray-300); margin-bottom: var(--space-6);">AI-powered analysis of your content's uniqueness and legal standing</p>
+                            
+                            <div class="originality-progress" id="originality-progress">
+                                <div class="progress-header">
+                                    <h4>Analysis in Progress</h4>
+                                    <div class="progress-percentage" id="originality-percentage">44%</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="originality-progress-fill" style="width: 44%"></div>
+                                </div>
+                                
+                                <div class="analysis-steps">
+                                    <div class="step-item active" id="step-scanning">
+                                        <div class="step-icon">🔍</div>
+                                        <div class="step-content">
+                                            <strong>Content Scanning</strong>
+                                            <span>Analyzing structure</span>
+                                        </div>
+                                    </div>
+                                    <div class="step-item" id="step-legal">
+                                        <div class="step-icon">⚖️</div>
+                                        <div class="step-content">
+                                            <strong>Legal Review</strong>
+                                            <span>Fair use assessment</span>
+                                        </div>
+                                    </div>
+                                    <div class="step-item" id="step-risk">
+                                        <div class="step-icon">🛡️</div>
+                                        <div class="step-content">
+                                            <strong>Risk Analysis</strong>
+                                            <span>IP protection review</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="originality-results" id="originality-results" style="display: none;">
+                                <div class="results-header">
+                                    <h4>Analysis Complete</h4>
+                                    <p>Your content has been analyzed for originality and legal compliance</p>
+                                </div>
+                                
+                                <div class="originality-scores">
+                                    <div class="score-item">
+                                        <div class="score-number" id="originality-score">70%</div>
+                                        <div class="score-label">Original Content</div>
+                                    </div>
+                                    <div class="score-item">
+                                        <div class="score-number" id="fair-use-score">15%</div>
+                                        <div class="score-label">Potential Fair Use</div>
+                                    </div>
+                                    <div class="score-item">
+                                        <div class="risk-badge" id="risk-level">Low Risk</div>
+                                        <div class="score-label">Risk Assessment</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="fair-use-definition">
+                                    <h5>Fair Use Definition (Black's Law Dictionary)</h5>
+                                    <p>"A privilege in others than the owner of a copyright to use the copyrighted material in a reasonable manner without the owner's consent, notwithstanding the monopoly granted to the owner."</p>
+                                    <p>Fair use factors include: purpose of use, nature of copyrighted work, amount used, and effect on market value.</p>
+                                </div>
+                                
+                                <div class="similar-content">
+                                    <h5>Similar Content Found</h5>
+                                    <p>Content with potential similarities to your work</p>
+                                    <div id="similar-content-list" class="similar-items">
+                                        <div class="similar-item">
+                                            <strong>Similar sci-fi narrative</strong>
+                                            <span class="similarity-badge">Public Domain</span>
+                                            <span class="similarity-percentage">25% Similarity</span>
+                                        </div>
+                                        <div class="similar-item">
+                                            <strong>Character archetype</strong>
+                                            <span class="similarity-badge">Common Trope</span>
+                                            <span class="similarity-percentage">15% Similarity</span>
+                                        </div>
+                                        <div class="similar-item">
+                                            <strong>World-building elements</strong>
+                                            <span class="similarity-badge">Genre Convention</span>
+                                            <span class="similarity-percentage">10% Similarity</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="workflow-buttons">
+                                    <button class="btn btn-primary" onclick="nextStep('review-improve')">Continue to Review</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Review & Improve Step -->
+                        <div id="review-improve-step" class="workflow-step">
+                            <h3>Review & Improve</h3>
+                            <p style="color: var(--gray-300); margin-bottom: var(--space-6);">Review our suggestions and make changes to optimize your content</p>
+                            
+                            <div class="review-content">
+                                <div class="content-editor">
+                                    <h4>Your Content</h4>
+                                    <p class="editor-description">Make edits to improve originality and legal standing</p>
+                                    <div class="editor-container">
+                                        <textarea id="content-editor" class="content-textarea" rows="10"></textarea>
+                                        <div class="character-count" id="editor-char-count">829 characters</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="improvement-suggestions">
+                                    <h4>Improvement Suggestions</h4>
+                                    <p class="suggestions-description">AI-generated recommendations to enhance your content</p>
+                                    
+                                    <div id="suggestions-list" class="suggestions-container">
+                                        <div class="suggestion-item">
+                                            <div class="suggestion-header">
+                                                <strong>Similar narrative structure detected</strong>
+                                                <span class="priority-badge medium">medium</span>
+                                            </div>
+                                            <p>Consider modifying the opening sequence to increase originality</p>
+                                            <div class="suggestion-tip">💡 Start with a unique perspective or unconventional narrative approach</div>
+                                        </div>
+                                        
+                                        <div class="suggestion-item">
+                                            <div class="suggestion-header">
+                                                <strong>Character name similarity</strong>
+                                                <span class="priority-badge low">low</span>
+                                            </div>
+                                            <p>Captain Elena Vasquez shares similarities with existing characters</p>
+                                            <div class="suggestion-tip">💡 Consider using a more distinctive character name</div>
+                                        </div>
+                                        
+                                        <div class="suggestion-item">
+                                            <div class="suggestion-header">
+                                                <strong>World-building opportunity</strong>
+                                                <span class="priority-badge low">low</span>
+                                            </div>
+                                            <p>Add unique technological or cultural elements</p>
+                                            <div class="suggestion-tip">💡 Develop distinctive alien technology or social structures</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="quick-actions">
+                                        <h5>Quick Actions</h5>
+                                        <button class="btn btn-success" onclick="autoImproveContent()">Auto-improve content</button>
+                                        <button class="btn btn-secondary" onclick="acceptAllSuggestions()">Accept all suggestions</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="improvement-metrics">
+                                <div class="metric-item">
+                                    <div class="metric-number" id="current-originality">70%</div>
+                                    <div class="metric-label">Current Originality</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-number potential" id="potential-originality">85%</div>
+                                    <div class="metric-label">Potential Originality</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-number" id="suggestions-count">3</div>
+                                    <div class="metric-label">Suggestions Available</div>
+                                </div>
+                            </div>
+                            
+                            <div class="workflow-buttons">
+                                <button class="btn btn-secondary" onclick="previousStep('originality-analysis')">← Back</button>
+                                <button class="btn btn-primary" onclick="nextStep('protection-plan')">Continue to Pricing ✨</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Protection Plan Step -->
+                        <div id="protection-plan-step" class="workflow-step">
+                            <h3>Choose Your Protection Plan</h3>
+                            <p style="color: var(--gray-300); margin-bottom: var(--space-6);">Select the level of IP protection that best fits your needs</p>
+                            
+                            <div class="protection-plans" id="protection-plans">
+                                <div class="plan-card">
+                                    <div class="plan-header">
+                                        <div class="plan-icon">🛡️</div>
+                                        <h4>Basic Protection</h4>
+                                        <div class="plan-price">$49<span>/one-time</span></div>
+                                    </div>
+                                    <p class="plan-description">Essential IP protection for individual creators</p>
+                                    <ul class="plan-features">
+                                        <li>Content fingerprinting</li>
+                                        <li>Basic originality analysis</li>
+                                        <li>Copyright registration assistance</li>
+                                        <li>Standard blockchain tokenization</li>
+                                        <li>1 year protection coverage</li>
+                                    </ul>
+                                    <button class="btn btn-outline" onclick="selectPlan('basic')">Add</button>
+                                </div>
+                                
+                                <div class="plan-card popular">
+                                    <div class="popular-badge">Most Popular</div>
+                                    <div class="plan-header">
+                                        <div class="plan-icon">⚡</div>
+                                        <h4>Standard Package</h4>
+                                        <div class="plan-price">$149<span>/one-time</span></div>
+                                    </div>
+                                    <p class="plan-description">Comprehensive protection with enhanced features</p>
+                                    <ul class="plan-features">
+                                        <li>Advanced AI analysis</li>
+                                        <li>Fair use assessment</li>
+                                        <li>Legal compliance review</li>
+                                        <li>Enhanced blockchain security</li>
+                                        <li>Marketplace listing</li>
+                                        <li>Royalty tracking system</li>
+                                        <li>3 years protection coverage</li>
+                                    </ul>
+                                    <button class="btn btn-primary" onclick="selectPlan('standard')">Add</button>
+                                </div>
+                                
+                                <div class="plan-card">
+                                    <div class="plan-header">
+                                        <div class="plan-icon">👑</div>
+                                        <h4>Premium Suite</h4>
+                                        <div class="plan-price">$299<span>/one-time</span></div>
+                                    </div>
+                                    <p class="plan-description">Complete IP management and monetization</p>
+                                    <ul class="plan-features">
+                                        <li>Full legal review</li>
+                                        <li>Priority support</li>
+                                        <li>Advanced analytics</li>
+                                        <li>Custom smart contracts</li>
+                                        <li>Global IP registration</li>
+                                        <li>Revenue optimization</li>
+                                        <li>Lifetime protection coverage</li>
+                                    </ul>
+                                    <button class="btn btn-outline" onclick="selectPlan('premium')">Add</button>
+                                </div>
+                            </div>
+                            
+                            <div class="additional-services">
+                                <h4>Additional Services</h4>
+                                <p>Optional add-ons to enhance your protection</p>
+                                
+                                <div class="service-items">
+                                    <div class="service-item">
+                                        <div class="service-info">
+                                            <strong>Expedited Processing</strong>
+                                            <span>24-hour turnaround</span>
+                                        </div>
+                                        <div class="service-price">+$25</div>
+                                        <button class="btn btn-sm" onclick="addService('expedited')">Add</button>
+                                    </div>
+                                    
+                                    <div class="service-item">
+                                        <div class="service-info">
+                                            <strong>Legal Consultation</strong>
+                                            <span>1-hour session with IP attorney</span>
+                                        </div>
+                                        <div class="service-price">+$150</div>
+                                        <button class="btn btn-sm" onclick="addService('legal')">Add</button>
+                                    </div>
+                                    
+                                    <div class="service-item">
+                                        <div class="service-info">
+                                            <strong>Market Analysis Report</strong>
+                                            <span>Detailed market potential assessment</span>
+                                        </div>
+                                        <div class="service-price">+$75</div>
+                                        <button class="btn btn-sm" onclick="addService('market')">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="order-summary">
+                                <h4>💰 Order Summary</h4>
+                                <div class="summary-item">
+                                    <span id="selected-plan-name">Standard Package</span>
+                                    <span id="selected-plan-price">$149</span>
+                                </div>
+                                <div class="summary-description" id="selected-plan-description">Comprehensive protection with enhanced features</div>
+                                
+                                <div class="summary-totals">
+                                    <div class="total-item">
+                                        <span>Subtotal</span>
+                                        <span id="order-subtotal">$149</span>
+                                    </div>
+                                    <div class="total-item">
+                                        <span>Processing Fee (2.9%)</span>
+                                        <span id="processing-fee">$4</span>
+                                    </div>
+                                    <div class="total-item final">
+                                        <strong>Total</strong>
+                                        <strong id="order-total">$153</strong>
+                                    </div>
+                                </div>
+                                
+                                <div class="payment-methods">
+                                    <p>Payment Methods:</p>
+                                    <div class="payment-options">
+                                        <button class="payment-btn active" onclick="selectPayment('card')">💳 Card</button>
+                                        <button class="payment-btn" onclick="selectPayment('crypto')">₿ Crypto</button>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-success btn-large" onclick="acceptCharges()">Accept Charges 💳</button>
+                                
+                                <div class="security-note">
+                                    <span>🔒 Secure payment processing</span>
+                                    <span>30-day money-back guarantee</span>
+                                </div>
+                            </div>
+                            
+                            <div class="workflow-buttons">
+                                <button class="btn btn-secondary" onclick="previousStep('review-improve')">← Back</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Confirmation Step -->
+                        <div id="confirmation-step" class="workflow-step">
+                            <h3>Confirm Your Submission</h3>
+                            <div class="confirmation-details">
+                                <div class="detail-item">
+                                    <strong>User Type:</strong> <span id="confirm-user-type">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Category:</strong> <span id="confirm-category">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Title:</strong> <span id="confirm-title">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>File:</strong> <span id="confirm-file">-</span>
+                                </div>
+                            </div>
+                            
+                            <div class="workflow-buttons">
+                                <button class="btn btn-secondary" onclick="previousStep('content-upload')">← Back</button>
+                                <button class="btn btn-success" onclick="submitCreateIP()">🚀 Create IP Tokens</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Success Step -->
+                        <div id="success-step" class="workflow-step">
+                            <div class="success-message">
+                                <span class="success-icon">🎉</span>
+                                <h3>IP Successfully Created!</h3>
+                                <p>Your intellectual property has been tokenized and added to the blockchain.</p>
+                                
+                                <div class="token-details">
+                                    <div class="token-item">
+                                        <strong>Content ID:</strong> <span id="success-content-id">-</span>
+                                    </div>
+                                    <div class="token-item">
+                                        <strong>Tokens Created:</strong> <span id="success-tokens">-</span>
+                                    </div>
+                                    <div class="token-item">
+                                        <strong>Estimated Value:</strong> <span id="success-value">-</span>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn btn-primary" onclick="resetCreateIPWorkflow()">Create Another IP</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="uploads-panel" class="content-section" role="tabpanel" aria-labelledby="uploads-tab">
+                <div class="section-card">
+                    <h2>
+                        <span class="icon" aria-hidden="true">📚</span>
+                        My Uploaded Content
+                    </h2>
+                    
+                    <div id="uploads-content">
+                        <div class="empty-state">
+                            <div class="empty-state-icon" aria-hidden="true">📁</div>
+                            <h3 class="empty-state-title">No uploads yet</h3>
+                            <p class="empty-state-description">Upload and tokenize your intellectual property to see your content portfolio here.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="marketplace-panel" class="content-section" role="tabpanel" aria-labelledby="marketplace-tab">
+                <div class="section-card">
+                    <h2>
+                        <span class="icon" aria-hidden="true">🏪</span>
+                        IP Token Marketplace
+                    </h2>
+                    
+                    <div id="marketplace-content">
+                        <div class="empty-state">
+                            <div class="empty-state-icon" aria-hidden="true">🏪</div>
+                            <h3 class="empty-state-title">Marketplace coming soon</h3>
+                            <p class="empty-state-description">Upload and tokenize content to participate in the intellectual property marketplace.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-brand">
+                <span aria-hidden="true">🔗</span>
+                <span class="footer-text">Made with Manus</span>
+            </div>
+            <p class="footer-text">Professional Intellectual Property Tokenization Platform</p>
+        </footer>
+    </div>
+
+    <script>
+        let selectedFile = null;
+
+        const CATEGORY_KEYWORDS = {
+            'film': ['movie', 'film', 'cinema', 'feature', 'documentary', 'trailer', 'scene', 'footage', 'clip', 'reel', 'cut', 'edit'],
+            'animation': ['animation', 'animated', 'cartoon', 'anime', 'motion', 'graphics', 'toon', 'cel', 'frame', 'keyframe', 'render', '3d', '2d'],
+            'screenplay': ['screenplay', 'dialogue', 'act', 'treatment', 'outline', 'pitch', 'story', 'draft', 'revision'],
+            'book_writing': ['book', 'novel', 'chapter', 'manuscript', 'story', 'tale', 'literature', 'writing', 'text', 'prose', 'fiction', 'nonfiction'],
+            'digital_art': ['art', 'artwork', 'digital', 'painting', 'illustration', 'design', 'concept', 'sketch', 'drawing', 'graphic', 'visual', 'creative'],
+            'photography': ['photo', 'photograph', 'picture', 'shot', 'capture', 'portrait', 'landscape', 'macro', 'studio', 'candid'],
+            'music_composition': ['music', 'song', 'track', 'composition', 'melody', 'beat', 'sound', 'instrumental', 'vocal', 'mix', 'master'],
+            'podcast_audio': ['podcast', 'episode', 'interview', 'talk', 'show', 'voice', 'recording', 'broadcast', 'radio', 'discussion', 'conversation'],
+            'software_code': ['code', 'software', 'app', 'application', 'program', 'source', 'dev', 'development', 'build', 'release', 'framework', 'library'],
+            'video_games': ['game', 'gaming', 'gameplay', 'level', 'character', 'asset', 'unity', 'unreal', 'indie', 'mobile', 'console', 'pc', 'beta']
+        };
+
+        const EXTENSION_CATEGORY_MAP = {
+            'mp4': 'film', 'mov': 'film', 'avi': 'film', 'mkv': 'film', 'wmv': 'film',
+            'webm': 'animation', 'gif': 'animation',
+            'pdf': 'book_writing', 'txt': 'book_writing', 'doc': 'book_writing', 'docx': 'book_writing', 'rtf': 'book_writing', 'epub': 'book_writing',
+            'jpg': 'photography', 'jpeg': 'photography', 'raw': 'photography', 'tiff': 'photography',
+            'png': 'digital_art', 'bmp': 'digital_art', 'webp': 'digital_art', 'svg': 'digital_art',
+            'mp3': 'music_composition', 'wav': 'music_composition', 'aac': 'music_composition', 'flac': 'music_composition', 'ogg': 'music_composition', 'm4a': 'music_composition',
+            'js': 'software_code', 'py': 'software_code', 'html': 'software_code', 'css': 'software_code', 'java': 'software_code', 'cpp': 'software_code',
+            'zip': 'software_code', 'tar': 'software_code', 'gz': 'software_code',
+            'exe': 'video_games', 'apk': 'video_games', 'ipa': 'video_games', 'unity': 'video_games', 'unreal': 'video_games', 'rar': 'video_games'
+        };
+
+        const CONDITIONAL_FILE_TYPE_PRIORITY = {
+            'mp4': { default: 'film', overrides: { 'animation': ['animated', 'cartoon', 'anime', '3d', '2d'] } },
+            'mov': { default: 'film', overrides: { 'animation': ['animated', 'cartoon', 'anime', '3d', '2d'] } },
+            'mp3': { default: 'music_composition', overrides: { 'podcast_audio': ['podcast', 'interview', 'talk', 'discussion'] } },
+            'wav': { default: 'music_composition', overrides: { 'podcast_audio': ['podcast', 'interview', 'talk', 'discussion'] } },
+            'jpg': { default: 'photography', overrides: {} },
+            'jpeg': { default: 'photography', overrides: {} },
+            'exe': { default: 'video_games', overrides: {} },
+            'apk': { default: 'video_games', overrides: {} },
+            'ipa': { default: 'video_games', overrides: {} }
+        };
+
+        function detectSmartCategoryEnhanced(filename) {
+            const extension = filename.split('.').pop().toLowerCase();
+            const nameWithoutExtension = filename.replace(/\.[^/.]+$/, "").toLowerCase();
+            const cleanName = nameWithoutExtension.replace(/[_-]/g, ' ').replace(/\d+/g, '').replace(/v\d+/g, '').replace(/final|draft|copy/g, '').trim();
+            
+            if (CONDITIONAL_FILE_TYPE_PRIORITY[extension]) {
+                const priorityRule = CONDITIONAL_FILE_TYPE_PRIORITY[extension];
+                const defaultCategory = priorityRule.default;
+                
+                for (const [overrideCategory, overrideKeywords] of Object.entries(priorityRule.overrides)) {
+                    for (const keyword of overrideKeywords) {
+                        if (cleanName.includes(keyword)) {
+                            return [overrideCategory, `File type override: "${keyword}" detected in ${extension} file`];
+                        }
+                    }
+                }
+                
+                return [defaultCategory, `Conditional file type priority (${extension})`];
+            }
+            
+            let keywordMatches = [];
+            for (const [category, keywords] of Object.entries(CATEGORY_KEYWORDS)) {
+                for (const keyword of keywords) {
+                    if (cleanName.includes(keyword)) {
+                        keywordMatches.push({
+                            category: category,
+                            keyword: keyword,
+                            priority: keywords.indexOf(keyword)
+                        });
+                    }
+                }
+            }
+            
+            if (keywordMatches.length > 0) {
+                keywordMatches.sort((a, b) => a.priority - b.priority);
+                const topKeywordCategory = keywordMatches[0].category;
+                return [topKeywordCategory, `Keyword "${keywordMatches[0].keyword}" detected`];
+            }
+            
+            const extensionCategory = EXTENSION_CATEGORY_MAP[extension] || 'digital_art';
+            return [extensionCategory, `Extension-based detection (${extension})`];
+        }
+
+        function generateSmartTitleEnhanced(filename) {
+            let title = filename.replace(/\.[^/.]+$/, "");
+            title = title.replace(/[_-]/g, ' ');
+            title = title.replace(/\s*v?\d+(\.\d+)*\s*/gi, ' ');
+            title = title.replace(/\s*(final|draft|copy|edit|version|rev|revision)\s*/gi, ' ');
+            title = title.replace(/\s*(test_|_test|demo_|_demo|sample_|_sample|example_|_example)\s*/gi, ' ');
+            title = title.replace(/\s+/g, ' ').trim();
+            
+            const words = title.split(' ');
+            const lowercaseWords = ['a', 'an', 'and', 'as', 'at', 'but', 'by', 'for', 'if', 'in', 'of', 'on', 'or', 'the', 'to', 'up', 'with'];
+            
+            const formattedWords = words.map((word, index) => {
+                const lowerWord = word.toLowerCase();
+                if (index === 0) {
+                    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                }
+                if (lowercaseWords.includes(lowerWord)) {
+                    return lowerWord;
+                }
+                return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+            });
+            
+            title = formattedWords.join(' ');
+            if (title.length > 0) {
+                title = title.charAt(0).toUpperCase() + title.slice(1);
+            }
+            
+            return title || 'Untitled Content';
+        }
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                selectedFile = file;
+                
+                const fileSizeMB = (file.size / 1024 / 1024).toFixed(2);
+                const uploadArea = document.querySelector('.upload-area');
+                uploadArea.innerHTML = `
+                    <span class="upload-icon" aria-hidden="true">📄</span>
+                    <div class="upload-text">Selected: ${file.name}</div>
+                    <div class="upload-subtext">${fileSizeMB} MB - Ready for tokenization</div>
+                `;
+                
+                document.getElementById('upload-btn').disabled = false;
+                
+                const [detectedCategory, detectionReason] = detectSmartCategoryEnhanced(file.name);
+                const categorySelect = document.getElementById('content-category');
+                
+                if (!categorySelect.value || categorySelect.value === '') {
+                    categorySelect.value = detectedCategory;
+                }
+                
+                const titleInput = document.getElementById('content-title');
+                if (!titleInput.value || titleInput.value.trim() === '') {
+                    const generatedTitle = generateSmartTitleEnhanced(file.name);
+                    titleInput.value = generatedTitle;
+                }
+            }
+        }
+
+        function showSection(sectionName) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+                tab.setAttribute('aria-selected', 'false');
+            });
+            
+            document.getElementById(sectionName + '-panel').classList.add('active');
+            
+            const activeTab = document.getElementById(sectionName + '-tab');
+            activeTab.classList.add('active');
+            activeTab.setAttribute('aria-selected', 'true');
+        }
+
+        function openCreateIP() {
+            // Show the Create IP section instead of opening new tab
+            showSection('create-ip');
+        }
+
+        function handleUpload() {
+            if (!selectedFile) {
+                alert('Please select a file first.');
+                return;
+            }
+            
+            const title = document.getElementById('content-title').value;
+            const category = document.getElementById('content-category').value;
+            
+            if (!title.trim()) {
+                alert('Please enter a content title.');
+                return;
+            }
+            
+            const uploadBtn = document.getElementById('upload-btn');
+            uploadBtn.disabled = true;
+            uploadBtn.innerHTML = '<span aria-hidden="true">⏳</span> Processing...';
+            
+            setTimeout(() => {
+                const contentId = 'IP-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+                const totalTokens = Math.floor(Math.random() * 1000) + 100;
+                const tokenValue = '$' + (Math.random() * 10000 + 1000).toFixed(2);
+                
+                document.getElementById('content-id').textContent = contentId;
+                document.getElementById('total-tokens').textContent = totalTokens;
+                document.getElementById('token-value').textContent = tokenValue;
+                document.getElementById('tokenization-results').style.display = 'block';
+                
+                updateBlockchainStats();
+                
+                uploadBtn.disabled = false;
+                uploadBtn.innerHTML = '<span aria-hidden="true">🚀</span> Upload & Tokenize Content';
+                
+            }, 3000);
+        }
+
+        function updateBlockchainStats() {
+            const currentStatus = parseInt(document.getElementById('blockchain-status').textContent);
+            const currentValue = parseFloat(document.getElementById('total-value').textContent.replace('$', ''));
+            const currentTokens = parseInt(document.getElementById('active-tokens').textContent);
+            
+            document.getElementById('blockchain-status').textContent = currentStatus + 1;
+            document.getElementById('total-value').textContent = '$' + (currentValue + Math.random() * 5000 + 1000).toFixed(2);
+            document.getElementById('active-tokens').textContent = currentTokens + 1;
+        }
+
+        const uploadArea = document.querySelector('.upload-area');
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        
+        uploadArea.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                document.getElementById('file-input').files = files;
+                handleFileSelect({ target: { files: files } });
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && e.target.classList.contains('nav-tab')) {
+                e.preventDefault();
+                const tabs = Array.from(document.querySelectorAll('.nav-tab'));
+                const currentIndex = tabs.indexOf(e.target);
+                const nextIndex = (currentIndex + 1) % tabs.length;
+                tabs[nextIndex].focus();
+            }
+            
+            if (e.key === 'ArrowLeft' && e.target.classList.contains('nav-tab')) {
+                e.preventDefault();
+                const tabs = Array.from(document.querySelectorAll('.nav-tab'));
+                const currentIndex = tabs.indexOf(e.target);
+                const prevIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+                tabs[prevIndex].focus();
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('username').focus();
+            
+            setTimeout(() => {
+                document.querySelectorAll('.stat-card').forEach((card, index) => {
+                    card.style.animationDelay = `${index * 0.1}s`;
+                    card.style.animation = 'fadeIn 0.6s ease-out forwards';
+                });
+            }, 100);
+        });
+
+        // Enhanced file upload with splash screen
+        async function handleFileUpload(file, category, title) {
+            try {
+                // Simulate upload process
+                const uploadData = {
+                    filename: file.name,
+                    category: category || detectSmartCategoryEnhanced(file.name)[0],
+                    file_size_mb: (file.size / (1024 * 1024)).toFixed(1),
+                    user_id: 'demo_user',
+                    upload_id: Date.now()
+                };
+                
+                // Get upload success data
+                const response = await fetch('/api/upload/upload-success', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(uploadData)
+                });
+                
+                const result = await response.json();
+                
+                // Show success splash screen
+                showUploadSuccessSplash(result.splash_screen);
+                
+            } catch (error) {
+                console.error('Upload error:', error);
+                alert('Upload failed. Please try again.');
+            }
+        }
+
+        function showUploadSuccessSplash(splashData) {
+            const splashHTML = `
+                <div class="splash-screen" id="upload-splash">
+                    <div class="splash-content">
+                        <div class="splash-title">${splashData.title}</div>
+                        <div class="splash-message">${splashData.message}</div>
+                        <div class="splash-message" style="font-size: 1rem; color: var(--gray-300);">${splashData.subtitle}</div>
+                        
+                        <div class="token-breakdown">
+                            <h4 style="color: var(--primary); margin-bottom: var(--space-4);">Token Breakdown</h4>
+                            ${splashData.token_breakdown.breakdown_details.map(detail => `
+                                <div class="token-stat">
+                                    <span>${detail.label}</span>
+                                    <span>${detail.value.toLocaleString()} tokens</span>
+                                </div>
+                            `).join('')}
+                            <div class="token-stat">
+                                <span><strong>Total Tokens Created</strong></span>
+                                <span><strong>${splashData.token_breakdown.total_tokens.toLocaleString()} tokens</strong></span>
+                            </div>
+                            <div style="text-align: center; margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid rgba(255,255,255,0.1);">
+                                <div style="color: var(--primary); font-size: 1.2rem; font-weight: 700;">
+                                    Estimated Value: $${splashData.token_breakdown.estimated_value}
+                                </div>
+                                <div style="font-size: 0.9rem; color: var(--gray-400); margin-top: var(--space-1);">
+                                    ${splashData.token_breakdown.token_standard} on ${splashData.token_breakdown.blockchain_network}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="next-steps">
+                            ${splashData.next_steps.map(step => `
+                                <div class="next-step">
+                                    <div class="next-step-icon">${step.icon}</div>
+                                    <div class="next-step-title">${step.title}</div>
+                                    <div class="next-step-desc">${step.description}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        
+                        <button class="btn btn-primary" onclick="closeSplashScreen()" style="margin-top: var(--space-6);">
+                            <span aria-hidden="true">✨</span>
+                            Continue to Dashboard
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', splashHTML);
+            
+            // Auto-close after 10 seconds
+            setTimeout(() => {
+                closeSplashScreen();
+            }, 10000);
+        }
+
+        function closeSplashScreen() {
+            const splash = document.getElementById('upload-splash');
+            if (splash) {
+                splash.style.opacity = '0';
+                setTimeout(() => {
+                    splash.remove();
+                }, 300);
+            }
+        }
+
+        // Enhanced handleFileSelect to use new upload system
+        async function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            selectedFile = file;
+            
+            // Smart detection
+            const [detectedCategory, detectionReason] = detectSmartCategoryEnhanced(file.name);
+            const detection = { category: detectedCategory, reason: detectionReason };
+            
+            // Auto-fill title
+            const title = generateSmartTitleEnhanced(file.name);
+            document.getElementById('content-title').value = title;
+            
+            // Set category
+            const categorySelect = document.getElementById('content-category');
+            const categoryValue = detection.category.replace(' ', '_').toLowerCase();
+            
+            for (let option of categorySelect.options) {
+                if (option.value === categoryValue || option.value.includes(categoryValue)) {
+                    categorySelect.value = option.value;
+                    break;
+                }
+            }
+            
+            // Show file info
+            const uploadArea = document.querySelector('.upload-area');
+            uploadArea.innerHTML = `
+                <span class="upload-icon" aria-hidden="true">📄</span>
+                <div class="upload-text">File Selected: ${file.name}</div>
+                <div class="upload-subtext">Size: ${(file.size / (1024 * 1024)).toFixed(2)} MB</div>
+                <div class="upload-subtext">Detected Category: ${detection.category.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}</div>
+                <div class="upload-subtext">Detection: ${detection.reason}</div>
+                <button class="btn btn-primary" onclick="processUpload()" style="margin-top: var(--space-4);">
+                    <span aria-hidden="true">🚀</span>
+                    Tokenize IP
+                </button>
+            `;
+        }
+
+        async function processUpload() {
+            if (!selectedFile) {
+                alert('Please select a file first.');
+                return;
+            }
+            
+            const category = document.getElementById('content-category').value;
+            const title = document.getElementById('content-title').value;
+            
+            // Process the upload with splash screen
+            await handleFileUpload(selectedFile, category, title);
+        }
+
+        // Help Bubble Assistant Functions
+        function toggleHelpBubble() {
+            const bubble = document.getElementById('help-bubble');
+            const chat = document.getElementById('help-chat');
+            
+            if (chat.style.display === 'none' || chat.style.display === '') {
+                chat.style.display = 'block';
+                bubble.classList.add('active');
+                // Add welcome message if chat is empty
+                if (chat.querySelector('.help-messages').children.length === 0) {
+                    addHelpMessage("👋 Hi there! I'm Manny, your IP tokenization assistant! How can I help you today?", 'assistant');
+                }
+            } else {
+                chat.style.display = 'none';
+                bubble.classList.remove('active');
+            }
+        }
+
+        function addHelpMessage(message, sender) {
+            const messagesContainer = document.querySelector('.help-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `help-message ${sender}`;
+            messageDiv.innerHTML = `
+                <div class="message-content">${message}</div>
+                <div class="message-time">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
+            `;
+            messagesContainer.appendChild(messageDiv);
+            
+            // Ensure smooth scrolling to bottom
+            setTimeout(() => {
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 100);
+        }
+
+        function sendHelpMessage() {
+            const input = document.getElementById('help-input');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            addHelpMessage(message, 'user');
+            input.value = '';
+            
+            // Simulate assistant response
+            setTimeout(() => {
+                const response = getHelpResponse(message);
+                addHelpMessage(response, 'assistant');
+            }, 1000);
+        }
+
+        function getHelpResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            if (lowerMessage.includes('upload') || lowerMessage.includes('file')) {
+                return "🚀 To upload your content: 1) Click the upload area or drag & drop your file 2) Our smart system will auto-detect the category 3) Review the title and category 4) Click 'Upload & Tokenize'! We support files up to 50GB!";
+            } else if (lowerMessage.includes('token') || lowerMessage.includes('blockchain')) {
+                return "💎 Tokenization creates unique blockchain tokens for your IP! Each token represents fractional ownership and includes metadata, licensing rights, and value tracking. Your content gets a cryptographic fingerprint for authenticity!";
+            } else if (lowerMessage.includes('category') || lowerMessage.includes('detect')) {
+                return "🎯 Our smart detection system analyzes your filename and file type to automatically categorize your content with 94.4% accuracy! We support 10 categories: Film, Animation, Screenplay, Literature, Digital Art, Photography, Music, Podcasts, Software, and Video Games!";
+            } else if (lowerMessage.includes('marketplace') || lowerMessage.includes('sell')) {
+                return "🏪 The marketplace lets you list your tokenized IP for licensing or sale! Set your price, licensing terms, and let others discover your amazing content. You earn royalties on every transaction!";
+            } else if (lowerMessage.includes('help') || lowerMessage.includes('how')) {
+                return "❓ I can help with: • File uploads & tokenization • Understanding categories • Marketplace navigation • Account management • Technical questions. Just ask me anything!";
+            } else {
+                return "🤔 That's a great question! I'm here to help with anything related to IP tokenization, file uploads, marketplace features, or platform navigation. Could you be more specific about what you'd like to know?";
+            }
+        }
+
+        // Handle Enter key in help input
+        document.addEventListener('DOMContentLoaded', function() {
+            const helpInput = document.getElementById('help-input');
+            if (helpInput) {
+                helpInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        sendHelpMessage();
+                    }
+                });
+            }
+        });
+        
+        // Create IP Workflow Functions
+        let createIPData = {
+            userType: '',
+            category: '',
+            file: null,
+            files: [],
+            title: '',
+            description: ''
+        };
+        
+        function selectUserType(type) {
+            createIPData.userType = type;
+            
+            // Update UI
+            document.querySelectorAll('.user-type-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            event.target.closest('.user-type-card').classList.add('selected');
+            
+            // Enable continue button
+            const continueBtn = document.getElementById('user-type-continue-btn');
+            if (continueBtn) {
+                continueBtn.disabled = false;
+            }
+        }
+        
+        function updateUserTypeContinueButton() {
+            const categorySelect = document.getElementById('content-category-select');
+            const continueBtn = document.getElementById('user-type-continue');
+            
+            if (createIPData.userType && categorySelect.value) {
+                continueBtn.disabled = false;
+            } else {
+                continueBtn.disabled = true;
+            }
+        }
+        
+        // Add event listener for category selection
+        document.addEventListener('DOMContentLoaded', function() {
+            const categorySelect = document.getElementById('content-category-select');
+            if (categorySelect) {
+                categorySelect.addEventListener('change', function() {
+                    createIPData.category = this.value;
+                    updateUserTypeContinueButton();
+                });
+            }
+        });
+        
+        function nextStep(stepName) {
+            // Hide current step
+            document.querySelectorAll('.workflow-step').forEach(step => {
+                step.classList.remove('active');
+            });
+            
+            // Show next step
+            document.getElementById(stepName + '-step').classList.add('active');
+            
+            // Handle specific step logic
+            if (stepName === 'content-analysis') {
+                startContentAnalysis();
+            } else if (stepName === 'originality-analysis') {
+                startOriginalityAnalysis();
+            } else if (stepName === 'review-improve') {
+                initializeReviewStep();
+            } else if (stepName === 'protection-plan') {
+                loadProtectionPlans();
+            } else if (stepName === 'confirmation') {
+                updateConfirmationDetails();
+            }
+        }
+        
+        function previousStep(stepName) {
+            // Hide current step
+            document.querySelectorAll('.workflow-step').forEach(step => {
+                step.classList.remove('active');
+            });
+            
+            // Show previous step
+            document.getElementById(stepName + '-step').classList.add('active');
+        }
+        
+        function handleCreateIPFileSelect(event) {
+            const files = Array.from(event.target.files);
+            if (files.length > 0) {
+                // Add new files to the array
+                createIPData.files = [...createIPData.files, ...files.map(file => ({
+                    id: Date.now() + Math.random(),
+                    name: file.name,
+                    size: file.size,
+                    type: file.type,
+                    file: file
+                }))];
+                
+                // Keep the first file for backward compatibility
+                createIPData.file = files[0];
+                
+                // Auto-fill title if empty and we have files
+                const titleInput = document.getElementById('create-ip-title');
+                if (!titleInput.value && createIPData.files.length > 0) {
+                    const fileName = createIPData.files[0].name.replace(/\.[^/.]+$/, ""); // Remove extension
+                    const cleanTitle = fileName.replace(/[_-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                    titleInput.value = cleanTitle;
+                    createIPData.title = cleanTitle;
+                }
+                
+                // Auto-detect category
+                autoDetectCategory();
+                
+                // Update UI
+                updateUploadedFilesList();
+                updateUploadContinueButton();
+            }
+        }
+        
+        function updateCharacterCount() {
+            const textarea = document.getElementById('create-ip-description');
+            const charCount = document.getElementById('char-count');
+            if (textarea && charCount) {
+                const count = textarea.value.length;
+                charCount.textContent = `${count} characters`;
+                createIPData.description = textarea.value;
+                updateUploadContinueButton();
+            }
+        }
+        
+        function updateUploadedFilesList() {
+            const filesList = document.getElementById('uploaded-files-list');
+            const filesContainer = document.getElementById('files-container');
+            
+            if (createIPData.files.length > 0) {
+                filesList.style.display = 'block';
+                filesContainer.innerHTML = '';
+                
+                createIPData.files.forEach(fileData => {
+                    const fileItem = document.createElement('div');
+                    fileItem.className = 'file-item';
+                    fileItem.innerHTML = `
+                        <div class="file-info">
+                            <div class="file-icon">${getFileIcon(fileData.type)}</div>
+                            <div class="file-details">
+                                <div class="file-name">${fileData.name}</div>
+                                <div class="file-size">${formatFileSize(fileData.size)}</div>
+                            </div>
+                        </div>
+                        <button class="file-remove" onclick="removeFile('${fileData.id}')">✕</button>
+                    `;
+                    filesContainer.appendChild(fileItem);
+                });
+            } else {
+                filesList.style.display = 'none';
+            }
+        }
+        
+        function removeFile(fileId) {
+            createIPData.files = createIPData.files.filter(file => file.id !== fileId);
+            if (createIPData.files.length > 0) {
+                createIPData.file = createIPData.files[0].file;
+            } else {
+                createIPData.file = null;
+            }
+            updateUploadedFilesList();
+            updateUploadContinueButton();
+        }
+        
+        function getFileIcon(fileType) {
+            if (fileType.startsWith('image/')) return '🖼️';
+            if (fileType.startsWith('audio/')) return '🎵';
+            if (fileType.startsWith('video/')) return '🎬';
+            if (fileType.includes('text') || fileType.includes('document')) return '📄';
+            return '📁';
+        }
+        
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+        
+        function autoDetectCategory() {
+            if (createIPData.files.length > 0) {
+                const file = createIPData.files[0];
+                const categorySelect = document.getElementById('content-category-select');
+                
+                // Auto-detect based on file type
+                if (file.type.startsWith('image/')) {
+                    categorySelect.value = 'art';
+                } else if (file.type.startsWith('video/')) {
+                    categorySelect.value = 'film';
+                } else if (file.type.startsWith('audio/')) {
+                    categorySelect.value = 'music';
+                } else if (file.type.includes('text') || file.type.includes('document')) {
+                    categorySelect.value = 'writing';
+                }
+                
+                createIPData.category = categorySelect.value;
+            }
+        }
+        
+        // Drag and drop functionality
+        function handleDragOver(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            document.getElementById('upload-drop-zone').classList.add('drag-active');
+        }
+        
+        function handleDragEnter(event) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        
+        function handleDragLeave(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            document.getElementById('upload-drop-zone').classList.remove('drag-active');
+        }
+        
+        function handleDrop(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            document.getElementById('upload-drop-zone').classList.remove('drag-active');
+            
+            if (event.dataTransfer.files && event.dataTransfer.files.length > 0) {
+                const fileInput = document.getElementById('create-ip-file-input');
+                fileInput.files = event.dataTransfer.files;
+                handleCreateIPFileSelect({ target: { files: event.dataTransfer.files } });
+            }
+        }
+        
+        function updateUploadContinueButton() {
+            const titleInput = document.getElementById('create-ip-title');
+            const categorySelect = document.getElementById('content-category-select');
+            const descriptionInput = document.getElementById('create-ip-description');
+            const continueBtn = document.getElementById('upload-continue');
+            
+            if (!titleInput || !categorySelect || !descriptionInput || !continueBtn) return;
+            
+            // Update data
+            createIPData.title = titleInput.value;
+            createIPData.category = categorySelect.value;
+            createIPData.description = descriptionInput.value;
+            
+            // Enable button if we have content (files or description) and required fields
+            const hasContent = createIPData.files.length > 0 || createIPData.description.trim();
+            const hasRequiredFields = createIPData.title.trim() && createIPData.category;
+            
+            if (hasContent && hasRequiredFields) {
+                continueBtn.disabled = false;
+            } else {
+                continueBtn.disabled = true;
+            }
+        }
+        
+        // Add event listeners for form inputs
+        document.addEventListener('DOMContentLoaded', function() {
+            const titleInput = document.getElementById('create-ip-title');
+            const descInput = document.getElementById('create-ip-description');
+            const categorySelect = document.getElementById('content-category-select');
+            
+            if (titleInput) {
+                titleInput.addEventListener('input', function() {
+                    createIPData.title = this.value;
+                    updateUploadContinueButton();
+                });
+            }
+            
+            if (descInput) {
+                descInput.addEventListener('input', function() {
+                    createIPData.description = this.value;
+                });
+            }
+            
+            if (categorySelect) {
+                categorySelect.addEventListener('change', function() {
+                    createIPData.category = this.value;
+                    updateUploadContinueButton();
+                });
+            }
+        });
+        
+        function updateConfirmationDetails() {
+            document.getElementById('confirm-user-type').textContent = createIPData.userType || '-';
+            document.getElementById('confirm-category').textContent = createIPData.category || '-';
+            document.getElementById('confirm-title').textContent = createIPData.title || '-';
+            document.getElementById('confirm-file').textContent = createIPData.file ? createIPData.file.name : '-';
+        }
+        
+        function submitCreateIP() {
+            // Show loading state
+            const submitBtn = document.querySelector('button[onclick="submitCreateIP()"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '🔄 Creating IP Tokens...';
+            submitBtn.disabled = true;
+            
+            // Check if we have content (either file or description)
+            if (!createIPData.file && (!createIPData.description || createIPData.description.trim() === '')) {
+                alert('Please either upload a file or provide a description of your content.');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                return;
+            }
+            
+            console.log('Starting IP tokenization process...');
+            console.log('CreateIP Data:', createIPData);
+            
+            // If we have a file, upload it first, then tokenize
+            if (createIPData.file) {
+                // Create FormData for file upload
+                const formData = new FormData();
+                formData.append('file', createIPData.file);
+                formData.append('title', createIPData.title || 'Untitled Content');
+                formData.append('description', createIPData.description || '');
+                formData.append('category', createIPData.category || 'other');
+                formData.append('user_type', createIPData.userType || 'creator');
+                formData.append('creator', 'ui_test_creator');
+                
+                // First upload the file, then call tokenization
+                fetch('/api/content/upload', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    console.log('Upload response status:', response.status);
+                    return response.json();
+                })
+                .then(uploadData => {
+                    console.log('Upload response:', uploadData);
+                    if (uploadData.success) {
+                        console.log('File uploaded successfully, starting tokenization...');
+                        console.log('File path:', uploadData.metadata.file_path);
+                        
+                        // Now call the tokenization API with the uploaded file path
+                        return fetch('/api/tokenization/full-workflow', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                title: createIPData.title || 'Untitled Content',
+                                description: createIPData.description || '',
+                                category: createIPData.category || 'other',
+                                user_type: createIPData.userType || 'creator',
+                                creator_address: 'ui_test_creator',
+                                file_path: uploadData.metadata.file_path
+                            })
+                        });
+                    } else {
+                        throw new Error(uploadData.error || 'File upload failed');
+                    }
+                })
+                .then(response => {
+                    console.log('Tokenization response status:', response.status);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Tokenization response:', data);
+                    handleTokenizationSuccess(data, submitBtn, originalText);
+                })
+                .catch(error => {
+                    console.error('Error during file upload and tokenization:', error);
+                    handleTokenizationError(error, submitBtn, originalText);
+                });
+            } else {
+                // Text-only submission - directly call tokenization API
+                fetch('/api/tokenization/full-workflow', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        title: createIPData.title || 'Untitled Content',
+                        description: createIPData.description || '',
+                        category: createIPData.category || 'other',
+                        user_type: createIPData.userType || 'creator',
+                        creator_address: 'ui_test_creator',
+                        content_type: 'text'
+                    })
+                })
+                .then(response => {
+                    console.log('Tokenization response status:', response.status);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Tokenization response:', data);
+                    handleTokenizationSuccess(data, submitBtn, originalText);
+                })
+                .catch(error => {
+                    console.error('Error during text tokenization:', error);
+                    handleTokenizationError(error, submitBtn, originalText);
+                });
+            }
+        }
+        
+        function handleTokenizationSuccess(data, submitBtn, originalText) {
+            if (data.success) {
+                // Update success details with real data
+                document.getElementById('success-content-id').textContent = data.content_id || 'IP-' + Date.now();
+                document.getElementById('success-tokens').textContent = data.workflow_steps?.step_2_tokenization?.total_tokens || '1000';
+                document.getElementById('success-value').textContent = '$' + (data.workflow_steps?.step_2_tokenization?.total_value_usd || (Math.random() * 10000 + 1000).toFixed(2));
+                
+                console.log('Tokenization successful, showing success step');
+                // Show success step
+                nextStep('success');
+            } else {
+                // Handle error
+                console.error('Tokenization failed:', data.error);
+                alert('Error creating IP tokens: ' + (data.error || 'Unknown error'));
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        }
+        
+        function handleTokenizationError(error, submitBtn, originalText) {
+            console.error('Tokenization error:', error);
+            alert('Error creating IP tokens: ' + error.message);
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+        
+        function resetCreateIPWorkflow() {
+            // Reset data
+            createIPData = {
+                userType: '',
+                category: '',
+                file: null,
+                title: '',
+                description: ''
+            };
+            
+            // Reset form
+            document.getElementById('content-category-select').value = '';
+            document.getElementById('create-ip-title').value = '';
+            document.getElementById('create-ip-description').value = '';
+            document.getElementById('create-ip-file-input').value = '';
+            
+            // Reset UI
+            document.querySelectorAll('.user-type-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Show first step
+            document.querySelectorAll('.workflow-step').forEach(step => {
+                step.classList.remove('active');
+            });
+            document.getElementById('user-type-step').classList.add('active');
+        }
+
+        // Analysis Workflow Functions
+        let analysisData = {};
+
+        async function startContentAnalysis() {
+            // Show loading state
+            document.getElementById('content-analysis-loading').style.display = 'block';
+            document.getElementById('content-analysis-results').style.display = 'none';
+
+            try {
+                const response = await fetch('/api/analysis/content-analysis', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        description: createIPData.description,
+                        category: createIPData.category,
+                        title: createIPData.title
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Store analysis data
+                    analysisData.contentAnalysis = data.analysis;
+                    
+                    // Update UI with analysis results
+                    document.getElementById('analysis-confidence').textContent = data.analysis.confidence + '%';
+                    document.getElementById('analysis-content-type').textContent = data.analysis.content_type;
+                    document.getElementById('analysis-category').textContent = data.analysis.category_classification;
+                    document.getElementById('analysis-value').textContent = '$' + data.analysis.estimated_value;
+                    document.getElementById('analysis-summary').textContent = data.analysis.category_classification;
+                    
+                    // Update creative elements list
+                    const elementsList = document.getElementById('analysis-elements');
+                    elementsList.innerHTML = '';
+                    data.analysis.creative_elements.forEach(element => {
+                        const li = document.createElement('li');
+                        li.textContent = element;
+                        elementsList.appendChild(li);
+                    });
+                    
+                    // Hide loading and show results
+                    document.getElementById('content-analysis-loading').style.display = 'none';
+                    document.getElementById('content-analysis-results').style.display = 'block';
+                } else {
+                    throw new Error(data.error || 'Analysis failed');
+                }
+            } catch (error) {
+                console.error('Content analysis error:', error);
+                alert('Error analyzing content: ' + error.message);
+                // Go back to previous step
+                previousStep('content-upload');
+            }
+        }
+
+        function confirmAnalysis(isCorrect) {
+            if (isCorrect) {
+                nextStep('originality-analysis');
+            } else {
+                // Allow user to modify or go back
+                alert('Please go back and modify your content details.');
+                previousStep('content-upload');
+            }
+        }
+
+        async function startOriginalityAnalysis() {
+            // Show progress state
+            document.getElementById('originality-progress').style.display = 'block';
+            document.getElementById('originality-results').style.display = 'none';
+
+            // Simulate progress animation
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress > 100) progress = 100;
+                
+                document.getElementById('originality-percentage').textContent = Math.round(progress) + '%';
+                document.getElementById('originality-progress-fill').style.width = progress + '%';
+                
+                // Update step states
+                if (progress > 30) {
+                    document.getElementById('step-scanning').classList.add('completed');
+                    document.getElementById('step-scanning').classList.remove('active');
+                    document.getElementById('step-legal').classList.add('active');
+                }
+                if (progress > 70) {
+                    document.getElementById('step-legal').classList.add('completed');
+                    document.getElementById('step-legal').classList.remove('active');
+                    document.getElementById('step-risk').classList.add('active');
+                }
+                if (progress >= 100) {
+                    document.getElementById('step-risk').classList.add('completed');
+                    document.getElementById('step-risk').classList.remove('active');
+                    clearInterval(progressInterval);
+                    
+                    // Start actual analysis
+                    performOriginalityAnalysis();
+                }
+            }, 200);
+        }
+
+        async function performOriginalityAnalysis() {
+            try {
+                const response = await fetch('/api/analysis/originality-analysis', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        description: createIPData.description,
+                        content_type: analysisData.contentAnalysis?.content_type || 'Creative Content'
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Store analysis data
+                    analysisData.originalityAnalysis = data.analysis;
+                    
+                    // Update UI with results
+                    document.getElementById('originality-score').textContent = data.analysis.originality_score + '%';
+                    document.getElementById('fair-use-score').textContent = data.analysis.fair_use_percentage + '%';
+                    document.getElementById('risk-level').textContent = data.analysis.risk_level;
+                    
+                    // Update similar content list
+                    const similarList = document.getElementById('similar-content-list');
+                    similarList.innerHTML = '';
+                    data.analysis.similar_content.forEach(item => {
+                        const div = document.createElement('div');
+                        div.className = 'similar-item';
+                        div.innerHTML = `
+                            <strong>${item.title}</strong>
+                            <span class="similarity-badge">${item.status}</span>
+                            <span class="similarity-percentage">${item.similarity}% Similarity</span>
+                        `;
+                        similarList.appendChild(div);
+                    });
+                    
+                    // Hide progress and show results
+                    setTimeout(() => {
+                        document.getElementById('originality-progress').style.display = 'none';
+                        document.getElementById('originality-results').style.display = 'block';
+                    }, 1000);
+                } else {
+                    throw new Error(data.error || 'Originality analysis failed');
+                }
+            } catch (error) {
+                console.error('Originality analysis error:', error);
+                alert('Error analyzing originality: ' + error.message);
+                previousStep('content-analysis');
+            }
+        }
+
+        async function initializeReviewStep() {
+            // Populate content editor with original description
+            document.getElementById('content-editor').value = createIPData.description;
+            updateCharacterCount('content-editor', 'editor-char-count');
+            
+            // Load improvement suggestions
+            try {
+                const response = await fetch('/api/analysis/improvement-suggestions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        description: createIPData.description,
+                        originality_score: analysisData.originalityAnalysis?.originality_score || 70
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Store suggestions data
+                    analysisData.suggestions = data.suggestions;
+                    
+                    // Update metrics
+                    document.getElementById('current-originality').textContent = data.suggestions.current_originality + '%';
+                    document.getElementById('potential-originality').textContent = data.suggestions.potential_originality + '%';
+                    document.getElementById('suggestions-count').textContent = data.suggestions.suggestions_count;
+                    
+                    // Update suggestions list
+                    const suggestionsList = document.getElementById('suggestions-list');
+                    suggestionsList.innerHTML = '';
+                    data.suggestions.suggestions.forEach(suggestion => {
+                        const div = document.createElement('div');
+                        div.className = 'suggestion-item';
+                        div.innerHTML = `
+                            <div class="suggestion-header">
+                                <strong>${suggestion.type}</strong>
+                                <span class="priority-badge ${suggestion.priority}">${suggestion.priority}</span>
+                            </div>
+                            <p>${suggestion.description}</p>
+                            <div class="suggestion-tip">💡 ${suggestion.suggestion}</div>
+                        `;
+                        suggestionsList.appendChild(div);
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading suggestions:', error);
+            }
+        }
+
+        function autoImproveContent() {
+            // Simulate auto-improvement
+            const editor = document.getElementById('content-editor');
+            let content = editor.value;
+            
+            // Apply some basic improvements
+            content = content.replace(/Captain Elena Vasquez/g, 'Commander Zara Nightfall');
+            content = content.replace(/space station/g, 'orbital research facility');
+            content = content.replace(/alien/g, 'extraterrestrial');
+            
+            editor.value = content;
+            updateCharacterCount('content-editor', 'editor-char-count');
+            
+            // Update metrics
+            document.getElementById('current-originality').textContent = '85%';
+            
+            alert('Content automatically improved! Originality increased to 85%.');
+        }
+
+        function acceptAllSuggestions() {
+            autoImproveContent();
+        }
+
+        async function loadProtectionPlans() {
+            try {
+                const response = await fetch('/api/analysis/protection-plans');
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Plans are already in the HTML, just update any dynamic content if needed
+                    console.log('Protection plans loaded:', data.plans);
+                }
+            } catch (error) {
+                console.error('Error loading protection plans:', error);
+            }
+        }
+
+        let selectedPlan = 'standard';
+        let selectedServices = [];
+
+        function selectPlan(planId) {
+            selectedPlan = planId;
+            
+            // Update UI
+            document.querySelectorAll('.plan-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Update plan details
+            const plans = {
+                'basic': { name: 'Basic Protection', price: 49, description: 'Essential IP protection for individual creators' },
+                'standard': { name: 'Standard Package', price: 149, description: 'Comprehensive protection with enhanced features' },
+                'premium': { name: 'Premium Suite', price: 299, description: 'Complete IP management and monetization' }
+            };
+            
+            const plan = plans[planId];
+            document.getElementById('selected-plan-name').textContent = plan.name;
+            document.getElementById('selected-plan-price').textContent = '$' + plan.price;
+            document.getElementById('selected-plan-description').textContent = plan.description;
+            
+            updateOrderSummary();
+        }
+
+        function addService(serviceId) {
+            const services = {
+                'expedited': { name: 'Expedited Processing', price: 25 },
+                'legal': { name: 'Legal Consultation', price: 150 },
+                'market': { name: 'Market Analysis Report', price: 75 }
+            };
+            
+            if (!selectedServices.includes(serviceId)) {
+                selectedServices.push(serviceId);
+                updateOrderSummary();
+            }
+        }
+
+        function updateOrderSummary() {
+            const plans = {
+                'basic': 49,
+                'standard': 149,
+                'premium': 299
+            };
+            
+            const services = {
+                'expedited': 25,
+                'legal': 150,
+                'market': 75
+            };
+            
+            let subtotal = plans[selectedPlan];
+            selectedServices.forEach(serviceId => {
+                subtotal += services[serviceId];
+            });
+            
+            const processingFee = Math.round(subtotal * 0.029);
+            const total = subtotal + processingFee;
+            
+            document.getElementById('order-subtotal').textContent = '$' + subtotal;
+            document.getElementById('processing-fee').textContent = '$' + processingFee;
+            document.getElementById('order-total').textContent = '$' + total;
+        }
+
+        function selectPayment(method) {
+            document.querySelectorAll('.payment-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        function acceptCharges() {
+            // Simulate payment processing
+            alert('Payment processing... This would integrate with a real payment processor.');
+            
+            // For demo, proceed to confirmation
+            nextStep('confirmation');
+        }
+
+        function updateCharacterCount(textareaId, counterId) {
+            const textarea = document.getElementById(textareaId);
+            const counter = document.getElementById(counterId);
+            if (textarea && counter) {
+                counter.textContent = textarea.value.length + ' characters';
+            }
+        }
+
+        // Add event listener for content editor
+        document.addEventListener('DOMContentLoaded', function() {
+            const contentEditor = document.getElementById('content-editor');
+            if (contentEditor) {
+                contentEditor.addEventListener('input', function() {
+                    updateCharacterCount('content-editor', 'editor-char-count');
+                });
+            }
+        });
+    </script>
+
+    <!-- Help Bubble Assistant -->
+    <div id="help-bubble" class="help-bubble" onclick="toggleHelpBubble()">
+        <div class="help-bubble-icon">🤖</div>
+        <div class="help-bubble-text">Need Help?</div>
+        <div class="help-bubble-pulse"></div>
+    </div>
+
+    <div id="help-chat" class="help-chat">
+        <div class="help-chat-header">
+            <div class="help-chat-title">
+                <span class="help-assistant-avatar">🤖</span>
+                <div>
+                    <div class="help-assistant-name">Manny - IP Assistant</div>
+                    <div class="help-assistant-status">🟢 Online & Ready to Help!</div>
+                </div>
+            </div>
+            <button class="help-close-btn" onclick="toggleHelpBubble()">✕</button>
+        </div>
+        
+        <div class="help-messages"></div>
+        
+        <div class="help-input-area">
+            <input 
+                type="text" 
+                id="help-input" 
+                placeholder="Ask me anything about IP tokenization..." 
+                class="help-input"
+                onkeypress="if(event.key==='Enter') sendHelpMessage()"
+            >
+            <button onclick="sendHelpMessage()" class="help-send-btn">
+                <span>🚀</span>
+            </button>
+        </div>
+        
+        <div class="help-quick-actions">
+            <button onclick="addHelpMessage('How do I upload a file?', 'user'); setTimeout(() => addHelpMessage(getHelpResponse('upload'), 'assistant'), 500);" class="help-quick-btn">
+                📤 How to Upload
+            </button>
+            <button onclick="addHelpMessage('What is tokenization?', 'user'); setTimeout(() => addHelpMessage(getHelpResponse('token'), 'assistant'), 500);" class="help-quick-btn">
+                💎 About Tokens
+            </button>
+            <button onclick="addHelpMessage('How does smart detection work?', 'user'); setTimeout(() => addHelpMessage(getHelpResponse('detect'), 'assistant'), 500);" class="help-quick-btn">
+                🎯 Smart Detection
+            </button>
+        </div>
+    </div>
+
+    <!-- Help Bubble -->
+    <div class="help-bubble" onclick="toggleHelpBubble()">
+        <div class="help-bubble-icon">🤖</div>
+        <div class="help-bubble-text">Help</div>
+        <div class="help-bubble-pulse"></div>
+    </div>
+
+    <style>
+        /* Help Bubble Styles */
+        .help-bubble {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #8b5cf6, #c084fc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .help-bubble:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(139, 92, 246, 0.6);
+        }
+
+        .help-bubble.active {
+            background: linear-gradient(135deg, #7c3aed, #a78bfa);
+        }
+
+        .help-bubble-icon {
+            font-size: 1.8rem;
+            animation: bounce 2s infinite;
+        }
+
+        .help-bubble-text {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .help-bubble:hover .help-bubble-text {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .help-bubble-pulse {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(139, 92, 246, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.4); opacity: 0; }
+        }
+
+        /* Help Chat Styles */
+        .help-chat {
+            position: fixed;
+            bottom: 120px;
+            right: 30px;
+            width: 380px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            display: none;
+            flex-direction: column;
+            border: 2px solid rgba(139, 92, 246, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .help-chat-header {
+            background: linear-gradient(135deg, #8b5cf6, #c084fc);
+            color: white;
+            padding: 20px;
+            border-radius: 18px 18px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .help-chat-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .help-assistant-avatar {
+            font-size: 1.5rem;
+        }
+
+        .help-assistant-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .help-assistant-status {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .help-close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .help-close-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .help-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-height: 350px;
+            min-height: 200px;
+        }
+
+        .help-message {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .help-message.user {
+            background: linear-gradient(135deg, #8b5cf6, #c084fc);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 6px;
+        }
+
+        .help-message.assistant {
+            background: #f3f4f6;
+            color: #374151;
+            align-self: flex-start;
+            border-bottom-left-radius: 6px;
+        }
+
+        .message-content {
+            margin-bottom: 4px;
+        }
+
+        .message-time {
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+
+        .help-input-area {
+            padding: 20px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .help-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .help-input:focus {
+            border-color: #8b5cf6;
+        }
+
+        .help-send-btn {
+            background: linear-gradient(135deg, #8b5cf6, #c084fc);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .help-send-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .help-quick-actions {
+            padding: 0 20px 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        .help-quick-btn {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 8px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: calc(33.333% - 7px);
+            flex: 1;
+            min-width: 0;
+        }
+
+        .help-quick-btn:hover {
+            background: rgba(139, 92, 246, 0.2);
+            transform: translateY(-1px);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .help-chat {
+                width: calc(100vw - 40px);
+                right: 20px;
+                left: 20px;
+                bottom: 100px;
+                height: 450px;
+            }
+            
+            .help-bubble {
+                bottom: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+            }
+            
+            .help-bubble-icon {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Manny Welcome Popup */
+        .manny-welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .manny-welcome-popup {
+            background: linear-gradient(135deg, #1e1b4b, #312e81);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            animation: popIn 0.6s ease-out;
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.8) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .manny-avatar {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .manny-welcome-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .manny-welcome-text {
+            font-size: 1.1rem;
+            color: #c7d2fe;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .manny-welcome-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .manny-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .manny-btn-primary {
+            background: linear-gradient(135deg, #8b5cf6, #c084fc);
+            color: white;
+        }
+
+        .manny-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        .manny-btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .manny-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        /* Welcome Back Popup */
+        .welcome-back-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            z-index: 2100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .welcome-back-popup {
+            background: linear-gradient(135deg, #1e1b4b, #312e81);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            animation: popIn 0.6s ease-out;
+        }
+
+        .welcome-back-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .ip-updates-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .ip-updates-title {
+            font-size: 1.3rem;
+            color: #c084fc;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .ip-update-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ip-update-item:last-child {
+            border-bottom: none;
+        }
+
+        .ip-update-content {
+            text-align: left;
+            flex: 1;
+        }
+
+        .ip-update-name {
+            font-weight: 600;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .ip-update-change {
+            font-size: 0.9rem;
+            color: #c7d2fe;
+        }
+
+        .ip-update-value {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .ip-update-positive {
+            color: #10b981;
+        }
+
+        .ip-update-neutral {
+            color: #f59e0b;
+        }
+
+        .welcome-back-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+    </style>
+
+    <!-- Manny Welcome Popup -->
+    <div id="manny-welcome-overlay" class="manny-welcome-overlay" style="display: none;">
+        <div class="manny-welcome-popup">
+            <div class="manny-avatar">🤖</div>
+            <h2 class="manny-welcome-title">Welcome to The Big IP Machine!</h2>
+            <p class="manny-welcome-text">
+                Hi there! I'm <strong>Manny</strong>, your personal IP tokenization assistant. 
+                I'm here to help you navigate the platform, understand tokenization, 
+                and make your content creation journey smooth and successful!
+            </p>
+            <div class="manny-welcome-buttons">
+                <button class="manny-btn manny-btn-primary" onclick="openMannyAndCloseWelcome()">
+                    🚀 Let's Get Started!
+                </button>
+                <button class="manny-btn manny-btn-secondary" onclick="closeMannyWelcome()">
+                    ✨ I'll Explore Myself
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Welcome Back Popup -->
+    <div id="welcome-back-overlay" class="welcome-back-overlay" style="display: none;">
+        <div class="welcome-back-popup">
+            <div class="manny-avatar">🤖</div>
+            <h2 class="welcome-back-title">Welcome Back, Creator!</h2>
+            <p class="manny-welcome-text">
+                Hi there! I'm <strong>Manny</strong>, and I have some exciting updates about your IP portfolio!
+            </p>
+            
+            <div class="ip-updates-section">
+                <h3 class="ip-updates-title">📈 Your IP Updates</h3>
+                
+                <div class="ip-update-item">
+                    <div class="ip-update-content">
+                        <div class="ip-update-name">🎬 "Epic Adventure Screenplay"</div>
+                        <div class="ip-update-change">Market interest increased by 15%</div>
+                    </div>
+                    <div class="ip-update-value ip-update-positive">+$2,340</div>
+                </div>
+                
+                <div class="ip-update-item">
+                    <div class="ip-update-content">
+                        <div class="ip-update-name">🎵 "Midnight Jazz Collection"</div>
+                        <div class="ip-update-change">3 new licensing inquiries</div>
+                    </div>
+                    <div class="ip-update-value ip-update-positive">+$890</div>
+                </div>
+                
+                <div class="ip-update-item">
+                    <div class="ip-update-content">
+                        <div class="ip-update-name">🎨 "Digital Art Portfolio"</div>
+                        <div class="ip-update-change">Stable market performance</div>
+                    </div>
+                    <div class="ip-update-value ip-update-neutral">$1,250</div>
+                </div>
+            </div>
+            
+            <div class="welcome-back-buttons">
+                <button class="manny-btn manny-btn-primary" onclick="closeWelcomeBack(); toggleHelpBubble();">
+                    💬 Chat with Manny
+                </button>
+                <button class="manny-btn manny-btn-secondary" onclick="closeWelcomeBack();">
+                    🚀 Continue Creating
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Show welcome popup on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is returning (simulate with localStorage)
+            const isReturningUser = localStorage.getItem('bigip_returning_user');
+            
+            setTimeout(() => {
+                if (isReturningUser) {
+                    // Show welcome back popup for returning users
+                    const welcomeBackOverlay = document.getElementById('welcome-back-overlay');
+                    if (welcomeBackOverlay) {
+                        welcomeBackOverlay.style.display = 'flex';
+                    }
+                } else {
+                    // Show first-time welcome popup
+                    const welcomeOverlay = document.getElementById('manny-welcome-overlay');
+                    if (welcomeOverlay) {
+                        welcomeOverlay.style.display = 'flex';
+                    }
+                    // Mark user as returning for next visit
+                    localStorage.setItem('bigip_returning_user', 'true');
+                }
+            }, 1000);
+        });
+
+        function openMannyAndCloseWelcome() {
+            // Close welcome popup
+            closeMannyWelcome();
+            // Open Manny chat after a short delay and start guided tour
+            setTimeout(() => {
+                toggleHelpBubble();
+                startGuidedTour();
+            }, 500);
+        }
+
+        function startGuidedTour() {
+            const tourMessages = [
+                "🎉 Welcome to your guided tour! Let me show you around The Big IP Machine!",
+                "📊 First, these stats at the top show your blockchain activity, total platform value, and active tokens - they update in real-time!",
+                "📤 The 'Dashboard' tab is your main hub - here you can upload and tokenize any type of content with our smart detection system!",
+                "📁 The 'My Uploads' tab will show all your tokenized content and their current marketplace status.",
+                "🏪 The 'Marketplace' tab is where you can browse, buy, and sell fractional ownership of IP from other creators.",
+                "🎯 Our smart detection system automatically categorizes your uploads - we support 10+ content types from films to podcasts!",
+                "💡 Pro tip: Just drag and drop any file, and I'll help you optimize the title and category for maximum tokenization value!",
+                "🚀 You're all set! Feel free to ask me anything about tokenization, blockchain, or using the platform. Happy creating!"
+            ];
+
+            let messageIndex = 0;
+            const tourInterval = setInterval(() => {
+                if (messageIndex < tourMessages.length) {
+                    addHelpMessage(tourMessages[messageIndex], 'assistant');
+                    messageIndex++;
+                } else {
+                    clearInterval(tourInterval);
+                }
+            }, 3000); // Show each message every 3 seconds
+        }
+
+        function closeMannyWelcome() {
+            const welcomeOverlay = document.getElementById('manny-welcome-overlay');
+            if (welcomeOverlay) {
+                welcomeOverlay.style.animation = 'fadeOut 0.3s ease-out';
+                setTimeout(() => {
+                    welcomeOverlay.style.display = 'none';
+                }, 300);
+            }
+        }
+
+        function closeWelcomeBack() {
+            const welcomeBackOverlay = document.getElementById('welcome-back-overlay');
+            if (welcomeBackOverlay) {
+                welcomeBackOverlay.style.animation = 'fadeOut 0.3s ease-out';
+                setTimeout(() => {
+                    welcomeBackOverlay.style.display = 'none';
+                }, 300);
+            }
+        }
+    </script>
+</body>
+</html>
+
