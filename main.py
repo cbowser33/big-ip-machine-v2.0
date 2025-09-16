@@ -5,16 +5,16 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 from flask import Flask, send_from_directory
 from flask_cors import CORS
-from src.models.user import db
-from src.routes.user import user_bp
-from src.routes.auth import auth_bp
-from src.routes.content import content_bp
-from src.routes.tokenization import tokenization_bp
-from src.routes.tokenization_v11 import tokenization_v11_bp
-from src.routes.registration import registration_bp
-from src.routes.upload_success import upload_success_bp
-from src.routes.email_notifications import email_notifications_bp
-from src.routes.analysis import analysis_bp
+from models.user import db
+from routes.user import user_bp
+from routes.auth import auth_bp
+from routes.content import content_bp
+from routes.tokenization import tokenization_bp
+from routes.tokenization_v11 import tokenization_v11_bp
+from routes.registration import registration_bp
+from routes.upload_success import upload_success_bp
+from routes.email_notifications import email_notifications_bp
+from routes.analysis import analysis_bp
 
 app = Flask(__name__, static_folder=os.path.join(os.path.dirname(__file__), 'static'))
 app.config['SECRET_KEY'] = 'big-ip-machine-v2.0-secret-key-2024'
